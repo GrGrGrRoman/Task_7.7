@@ -3,8 +3,14 @@ let maxValue = parseInt(prompt('Максимальное значение чис
 if (isNaN(minValue) || isNaN(maxValue)) {
     minValue = 0;
     maxValue = 100;
-    console.log(minValue);
-    console.log(maxValue);
+    //console.log(minValue);
+    //console.log(maxValue);
+}
+if (minValue <= -1000) {
+    minValue = -999;
+}
+if (maxValue >= 1000) {
+    maxValue = 999;
 }
 alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
