@@ -1,9 +1,12 @@
 let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
 let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
-if (minValue == NaN) {
+if (isNaN(minValue)) {
     minValue = 0;
     console.log(minValue);
-    }
+} if (isNaN(maxValue)) {
+    maxValue = 100;
+    console.log(maxValue);
+}
 alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
