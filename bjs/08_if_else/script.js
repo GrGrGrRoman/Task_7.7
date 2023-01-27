@@ -1,15 +1,15 @@
 let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
 let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
-if (isNaN(minValue) || isNaN(maxValue)) {
+if (isNaN(minValue) || isNaN(maxValue)) { //если введено не число, то значения устанавливаются по умолчанию
     minValue = 0;
     maxValue = 100;
     //console.log(minValue);
     //console.log(maxValue);
 }
-if (minValue <= -1000) {
+if (minValue <= -1000) { //если число меньше допустимого, то устанавливается нижняя граница
     minValue = -999;
 }
-if (maxValue >= 1000) {
+if (maxValue >= 1000) { //если число больше допустимого, то устанавливается верхняя граница
     maxValue = 999;
 }
 alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
