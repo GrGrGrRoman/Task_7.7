@@ -1,16 +1,22 @@
 let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
 let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
-if (isNaN(minValue) || isNaN(maxValue)) { //если введено не число, то значения устанавливаются по умолчанию
-    minValue = 0;
+if (isNaN(minValue) || isNaN(maxValue)) {  //проверка через дизъюнкцию
+    minValue = 0; //если введено не число, то значения устанавливаются по умолчанию
     maxValue = 100;
     //console.log(minValue);
     //console.log(maxValue);
 }
-if (minValue <= -1000) { //если число меньше допустимого, то устанавливается нижняя граница
-    minValue = -999;
+minValue <= -1000 ? minValue = -999 : minValue; //если число меньше допустимого
+maxValue >= 1000 ? maxValue = 999 : maxValue; //если число больше допустимого
+
+if (maxValue - minValue == 0) {
+    minValue = 0; //если ввели одинаковые числа, то лучше делать по умолчанию, а не менять местами
+    maxValue = 100;
 }
-if (maxValue >= 1000) { //если число больше допустимого, то устанавливается верхняя граница
-    maxValue = 999;
+if (maxValue - minValue < 0) { //проверка на то, что минимум меньше максимума
+    minValue = minValue + maxValue;
+    maxValue = minValue - maxValue;
+    minValue = minValue - maxValue;
 }
 alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
 let answerNumber  = Math.floor((minValue + maxValue) / 2);
@@ -34,12 +40,19 @@ document.querySelector('#btnRetry').addEventListener('click', function () {
         //console.log(minValue);
         //console.log(maxValue);
     }
-    if (minValue <= -1000) { //если число меньше допустимого, то устанавливается нижняя граница
-        minValue = -999;
-    }
-    if (maxValue >= 1000) { //если число больше допустимого, то устанавливается верхняя граница
-        maxValue = 999;
-    }
+    
+minValue <= -1000 ? minValue = -999 : minValue; //если число меньше допустимого
+maxValue >= 1000 ? maxValue = 999 : maxValue; //если число больше допустимого
+
+if (maxValue - minValue == 0) {
+    minValue = 0; //если ввели одинаковые числа, то лучше делать по умолчанию, а не менять местами
+    maxValue = 100;
+}
+if (maxValue - minValue < 0) { //проверка на то, что минимум меньше максимума
+    minValue = minValue + maxValue;
+    maxValue = minValue - maxValue;
+    minValue = minValue - maxValue;
+}
     alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
     orderNumber = null + 1;
     answerNumber  = Math.floor((minValue + maxValue) / 2);
@@ -89,8 +102,8 @@ document.querySelector('#btnLess').addEventListener('click', function () {
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
-            maxValue = answerNumber  + 1;
-            answerNumber  = Math.floor((minValue + maxValue) / 2);
+            maxValue = answerNumber  - 1;
+            answerNumber  = Math.ceil((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             const phraseRandom = Math.round(Math.random(1) * 5);
