@@ -3,8 +3,6 @@ let maxValue = parseInt(prompt('Максимальное значение чис
 if (isNaN(minValue) || isNaN(maxValue)) {  //проверка через дизъюнкцию
     minValue = 0; //если введено не число, то значения устанавливаются по умолчанию
     maxValue = 100;
-    //console.log(minValue);
-    //console.log(maxValue);
 }
 minValue <= -1000 ? minValue = -999 : minValue; //если число меньше допустимого
 maxValue >= 1000 ? maxValue = 999 : maxValue; //если число больше допустимого
@@ -30,15 +28,11 @@ orderNumberField.innerText = orderNumber;
 answerField.innerText = `Вы загадали число ${answerNumber }?`;
 
 document.querySelector('#btnRetry').addEventListener('click', function () {
-    //minValue = 0;
-    //maxValue = 100;
     minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
     maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
     if (isNaN(minValue) || isNaN(maxValue)) { //если введено не число, то значения устанавливаются по умолчанию
         minValue = 0;
         maxValue = 100;
-        //console.log(minValue);
-        //console.log(maxValue);
     }
     
 minValue <= -1000 ? minValue = -999 : minValue; //если число меньше допустимого
@@ -57,7 +51,7 @@ if (maxValue - minValue < 0) { //проверка на то, что миниму
     orderNumber = null + 1;
     answerNumber  = Math.floor((minValue + maxValue) / 2);
     orderNumberField.innerText = orderNumber;
-    answerField.innerText = `Вы загадали число ${answerNumber }?`;
+    answerField.innerText = `Вы загадали число ${answerNumber}?`;
     gameRun = true;
 })
 
@@ -149,4 +143,3 @@ document.querySelector('#btnEqual').addEventListener('click', function () {
         gameRun = false;
     }
 })
-
